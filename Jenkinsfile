@@ -4,19 +4,22 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git 'https://github.com/ratankhandekar/cicd-project.git' // Replace with your repo URL
+                git branch: 'main', url: 'https://github.com/ratankhandekar/cicd-project.git'
             }
         }
+
         stage('Build') {
             steps {
-                sh './mvn clean package' // Use 'mvn clean package' if mvnw is missing
+                sh './mvn clean package' // Use './mvnw' if Maven Wrapper is available
             }
         }
+
         stage('Docker Build') {
             steps {
                 sh 'docker build -t myapp:latest .' // Build Docker image
             }
         }
+
         stage('Run Container') {
             steps {
                 sh 'docker stop myapp || true && docker rm myapp || true' // Stop old container if running
