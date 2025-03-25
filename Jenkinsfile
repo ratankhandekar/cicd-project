@@ -10,7 +10,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh './mvn clean package' // Use './mvnw' if Maven Wrapper is available
+                sh './mvnw clean package' // Use './mvnw' if Maven Wrapper is available
             }
         }
 
